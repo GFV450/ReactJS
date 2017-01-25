@@ -211,7 +211,8 @@
     // The object should look something like: {name: "Rudolf", title: "leader of the pack"}
 
     var literalsAreUgly = function(name, title) {
-      return name + ", " + title
+      let person = {name: name, title: title}
+      return person
     }
 
     console.log(literalsAreUgly("Gian", "Destroyer of Worlds"))
@@ -220,33 +221,95 @@
 
     var nameTitle = [];
     nameTitle.push(literalsAreUgly("Gian", "Destroyer of Worlds"))
+    nameTitle.push(literalsAreUgly("Gian", "Destroyer of Worlds"))
     nameTitle.push(literalsAreUgly("Kojin", "Speed Demon"))
     nameTitle.push(literalsAreUgly("Enzo", "Tin Can"))
     nameTitle.push(literalsAreUgly("Jimmy", "Survival Expert"))
     nameTitle.push(literalsAreUgly("Luca", "Fell Hound"))
 
+    // // Write a function that takes a letter (a, b, c, etc) and returns an array containg all of the
+    // // names from nameTitle that begin with that letter. Use array.filter.
 
-    console.log(nameTitle)
+    var startsWith = nameTitle.filter(function(person) {
+      console.log(person.name.charAt[0] === "G")
+      return person.name.charAt[0] === "G"
+    })
 
-    // Write a function that takes a letter (a, b, c, etc) and returns an array containg all of the
-    // names from nameTitle that begin with that letter. Use array.filter.
+    console.log(startsWith)
 
-    // Write a function takes a title, and returns an array of all objects that have a matching title.
-    // Use filter again.
+    // // Write a function takes a title, and returns an array of all objects that have a matching title.
+    // // Use filter again.
+
+    // var matchTitle = nameTitle.filter(function(person) {
+    //   if(person.title === )
+    // })
+    //
+    // console.log(matchTitle)
 
     // Write a function that returns an array containing strings made from the names and titles.
     // Each string should look like: "Name Title" or "Diana the duchess of york" or something similar.
     // Use array.map().
 
+    var stringArray = nameTitle.map(function(person) {
+      let string = person.name + " " + person.title
+      return string
+    })
+
+    console.log(stringArray)
+
+
     // Create an array of random numbers. Bonus: Use a loop and add 100 random numbers or write a function to return an array of any number of random numbers.
 
-    // Write a function that returns an aray of all numbers 0.5 and above. use filter, map, or reduce.
+    function random() {
+      var random = []
+
+      for(i = 0 ; i < 100 ; i++) {
+        random.push(Math.floor(Math.random() * 1000) + 1)
+      }
+
+      return random
+    }
+
+    numberArray = random()
+
+    console.log(numberArray)
+
+    // Write a function that returns an array of all numbers 0.5 and above. use filter, map, or reduce.
+
+    filteredNumbers = numberArray.filter(function(number) {
+      return number > 0.5
+    })
+
+    console.log(filteredNumbers)
 
     // Write a function that returns an array of all numbers below 0.5. Use filter, map, or reduce.
 
+    emptyNumbers = numberArray.filter(function(number) {
+      return number < 0.5
+    })
+
+    console.log(emptyNumbers)
+
     // Write a function that returns the total of all random numbers. Use filter, map, or reduce.
+
+    totalNumbers = numberArray.reduce(function(a, b) {
+      return a + b
+    })
+
+    console.log(totalNumbers)
 
     // Write a function that returns the average of all of the random numbers. Use filter, map, or reduce.
 
+    function totalAverage() {
+      totalNumbers = numberArray.reduce(function(a, b) {
+        return a + b
+      })
+
+      return totalNumbers/2
+
+    }
+
+    var totalAvg = totalAverage()
+    console.log(totalAvg)
 
 </script>
