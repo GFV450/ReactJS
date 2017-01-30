@@ -79,6 +79,24 @@
             }
         }
 
+        // This is how a class looks before ES6:
+
+        // var aTHing = {x: 10, speak: function() {
+        //     console.log(this.x)
+        // }}
+        //
+        // function Thing2(x) {
+        //     this.x = x
+        // }
+        //
+        // Thing2.prototype.speak() = function() {console.log(this.x)}
+        //
+        // var a = new Thing(11)
+        // var b = new Thing2(12)
+        //
+        // b.speak()
+
+
         class Timer extends React.Component {
             constructor(props) {
                 super(props)
