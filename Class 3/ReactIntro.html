@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>React Single Page Starter</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: Helvetica;
+            font-size: 18px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- App -->
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/babel">
+
+        // --------------------------------
+        // Simple Component
+        // --------------------------------
+        function Title(props) {
+            return (
+                <h1>{props.title}</h1>
+            );
+        }
+
+        function CustomTitle(props) {
+            const styles = {color: props.color, fontSize: props.size}
+            return <h1 style = {styles}>Title: {props.title}</h1>
+        }
+        // --------------------------------
+
+
+        // --------------------------------
+        // Stateful Component
+        // --------------------------------
+        class Clock extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Date(),
+                    isOn: true
+                };
+                this.timerId = setInterval(() => this.tick(), 1000);
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.timerId);
+            }
+
+            tick() {
+                this.setState({date: new Date()});
+            }
+
+            render() {
+
+                const date = this.state.date;
+                const h = date.getHours();
+                const m = date.getMinutes();
+                const s = date.getSeconds();
+                const displayTime = `${h}:${m}:${s}`;
+
+                return (
+                    <Title title={displayTime} />
+                );
+            }
+        }
+
+        class Timer extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = ({time: props.time, interval: props.interval, message: props.message})
+                this.timerId = setInterval(() => this.tick(), props.interval)
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.timerId)
+            }
+
+            tick() {
+                var newCount = this.state.time - 1
+                if(newCount >= 0) {
+                    this.setState({ time : newCount })
+
+                }
+                else {
+                    clearInterval(this.timerId)
+                    this.setState({message: "Song's over"})
+                }
+            }
+
+            render() {
+                return <div> <h1> {this.state.time}</h1> <h1> {this.state.message} </h1> </div>
+            }
+        }
+        // --------------------------------
+
+        // Renders reacts virtual DOM.
+
+        // --------------------------------
+        ReactDOM.render(
+            <div>
+                <Title title = "Simple React Starter" />
+                <CustomTitle title = "Custom Title" color = "Red" size = "36px"/>
+                <Clock />
+                <Timer time = {10} interval = {1000} message = {"The Final Countdown!"} />
+            </div>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
